@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>u1</title>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.15.2/css/all.css"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      header {
+        display: flex;
+        background: rgb(162, 84, 186);
+        color: rgb(251, 216, 255);
+        justify-content: space-between;
+        align-items: center;
+        font-size: 24px;
+        padding: 10px;
+        position: static;
+      }
+      a {
+        font-weight: bold;
+        margin-left: 10px;
+        cursor: pointer;
+        transition: all 0.5s;
+      }
+      a:hover {
+        transform: scale(1.05, 1.05);
+      }
+      i {
+        cursor: pointer;
+        transition: 0.5s;
+      }
+      i:hover {
+        transform: scale(1.1, 1.1);
+      }
+      #burger {
+        display: none;
+      }
+      @media screen and (max-width: 720px) {
+        header {
+          position: relative;
+          font-size: 20px;
+          padding: 5px;
+        }
+        #burger {
+          display: block;
+        }
+        body {
+          overflow-x: hidden;
+        }
+        #menu {
+          padding: 10px;
+          position: absolute;
+          display: flex;
+          background: rgb(150, 76, 173);
+          top: 100%;
+          right: -100%;
+          flex-direction: column;
+          transition: right 0.5s;
+          border-radius: 0 0 0 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <i class="fas fa-house"></i>
+      <nav id="menu">
+        <a>Магазин</a>
+        <a>Корзина</a>
+        <a>Список</a>
+        <a>История</a>
+      </nav>
+      <i id="burger" class="fas fa-bars"></i>
+    </header>
+  </body>
+  <script>
+    let menu = document.getElementById("menu");
+    let burger = document.getElementById("burger");
+    let i = false;
+
+    burger.addEventListener("click", open);
+
+    function open() {
+      menu.style.right = i ? "-100%" : "0%";
+      i = !i;
+    }
+  </script>
+</html>
