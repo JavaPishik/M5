@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.15.2/css/all.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <label>
+      <input placeholder="Username" id="searchValue" />
+      <button id="searchBtn" onclick="getCard()">
+        <i class="fas fa-search"></i>
+        <span>Найти</span>
+      </button>
+    </label>
+    <main id="card">
+      <img src="https://avatars.githubusercontent.com/u/107366783?v=4" />
+      <h1>Title</h1>
+      <p>info</p>
+      <nav>
+        <div>
+          <i class="fas fa-map-marked"></i>
+          <span>location</span>
+        </div>
+        <div>
+          <i class="fas fa-heart"></i>
+          <span>like</span>
+        </div>
+        <div>
+          <i class="fas fa-star"></i>
+          <span>star</span>
+        </div>
+        <div>
+          <i class="fas fa-books"></i>
+          <span>book</span>
+        </div>
+      </nav>
+    </main>
+    <h1 id="load">
+      <i class="fas fa-spinner-third"></i>
+    </h1>
+  </body>
+  <script src="script.js"></script>
+</html>

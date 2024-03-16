@@ -1,0 +1,114 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  background-color: rgb(30, 30, 35);
+  align-items: center;
+  flex-direction: column;
+}
+
+input {
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: rgb(96, 89, 99);
+  border: 1px solid black;
+  border-radius: 3px;
+  transition: all 1s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+label {
+  background-color: darkgray;
+  margin: 5px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+main {
+  margin: 5px;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgb(108, 96, 109);
+  width: fit-content;
+  border-radius: 5px;
+  border: 1px solid black;
+
+  animation-name: card;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
+img {
+  width: 350px;
+}
+
+div {
+  margin-right: 10px;
+}
+
+#load {
+  color: white;
+  margin-top: 25%;
+  animation-name: load-animation;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes load-animation {
+  0% {
+    transform: rotate(0deg);
+    color: red;
+  }
+  25% {
+    transform: rotate(90deg);
+    color: blue;
+  }
+  50% {
+    transform: rotate(180deg);
+    color: green;
+  }
+  75% {
+    transform: rotate(270deg);
+    color: blue;
+  }
+  100% {
+    transform: rotate(360deg);
+    color: red;
+  }
+}
+
+@keyframes card {
+  0% {
+    transform: scale(1) translateY(0px);
+    background-color: rgb(108, 96, 109);
+  }
+  50% {
+    transform: scale(1.01) translateY(-5px);
+    background-color: rgb(185, 126, 190);
+  }
+  100% {
+    transform: scale(1) translateY(0px);
+    background-color: rgb(108, 96, 109);
+  }
+}
+
+.d-none {
+  display: none;
+}
