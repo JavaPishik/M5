@@ -47,8 +47,3 @@ function hide(obj) {
 function show(obj) {
   obj.classList.remove("d-none");
 }
-
-setInterval(() => {
-  card.style.width = Math.random() * 100 + "%";
-  card.style.height = Math.random() * 100 + "%";
-}, 100);
