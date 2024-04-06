@@ -3,7 +3,7 @@ let searchBtn = document.getElementById("searchBtn");
 let card = document.getElementById("card");
 let load = document.getElementById("load");
 
-let data;
+let dataCard;
 
 hide(load);
 hide(card);

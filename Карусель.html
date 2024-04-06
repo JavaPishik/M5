@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.15.2/css/all.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      main {
+        margin: 5px;
+        padding: 10px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        background: rgb(63, 63, 94);
+        border: 2px solid black;
+      }
+
+      div {
+        display: flex;
+        transition: all 0.25s;
+        border: 1px solid black;
+      }
+
+      nav {
+        overflow-x: hidden;
+      }
+
+      img {
+        width: 50%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+      }
+
+      i {
+        font-size: 40px;
+        padding: 10px;
+        color: white;
+        cursor: pointer;
+        transition: all 0.1s;
+      }
+
+      i:hover {
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <i class="fal fa-angle-left" id="arrowLeft"></i>
+      <nav>
+        <div id="carusel">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/1200px-Cat_August_2010-4.jpg"
+          />
+          <img
+            src="https://www.cats.org.uk/media/13136/220325case013.jpg?width=500&height=333.49609375"
+          />
+          <img
+            src="https://i.cbc.ca/1.7046192.1701492097!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/african-wild-cat.jpg"
+          />
+          <img
+            src="https://c02.purpledshub.com/uploads/sites/41/2021/04/Cat-staring-at-camera-304c55d.jpg?w=1029&webp=1"
+          />
+          <img
+            src="https://static.standard.co.uk/2021/06/07/12/erik-jan-leusink-IbPxGLgJiMI-unsplash.jpg?crop=8:5,smart&quality=75&auto=webp&width=1024"
+          />
+          <img
+            src="https://cdn.britannica.com/25/172925-050-DC7E2298/black-cat-back.jpg"
+          />
+          <img
+            src="https://static.scientificamerican.com/sciam/cache/file/2AE14CDD-1265-470C-9B15F49024186C10_source.jpg?w=1200"
+          />
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMAdVE5xQt_x0tP2o2KoNb6CfiQswCujaB75x19Iw79Q&s"
+          />
+          <img
+            src="https://i.cbc.ca/1.7046282.1701447456!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/humane-society.jpg"
+          />
+        </div>
+      </nav>
+      <i class="fal fa-angle-right" id="arrowRight"></i>
+    </main>
+    <script>
+      let carusel = document.getElementById("carusel");
+      let arrowLeft = document.getElementById("arrowLeft");
+      let arrowRight = document.getElementById("arrowRight");
+
+      let coruselElem = 2;
+      let width = 100 / coruselElem;
+      let item = carusel.children.length - coruselElem;
+      let current = 0;
+
+      for (const i of carusel.children) i.style.width = width + "%";
+
+      arrowLeft.addEventListener("click", swipeLeft);
+      arrowRight.addEventListener("click", swipeRight);
+
+      function swipeLeft() {
+        current--;
+        if (current < 0) current = item;
+        updateCarusel();
+      }
+
+      function swipeRight() {
+        current++;
+        if (current > item) current = 0;
+        updateCarusel();
+      }
+
+      function updateCarusel() {
+        carusel.style.transform = `translateX(-${current * width}%)`;
+      }
+    </script>
+  </body>
+</html>
