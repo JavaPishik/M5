@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paint</title>
+    <style>
+      #canvas {
+        cursor: crosshair;
+        border-radius: 5px;
+        border: 3px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <input id="color" value="black" type="color" />
+    <input id="lineSize" type="range" min="1" max="100" value="10" />
+  </body>
+  <script>
+    let canvas = document.getElementById("canvas");
+    let context = canvas.getContext("2d");
+
+    let colorInput = document.getElementById("color");
+    let sizeInput = document.getElementById("lineSize");
+
+    canvas.width = 800;
+    canvas.height = 500;
+
+    let memory = [];
+
+    let draw = false;
+
+    let config = {
+      lineSize: 5,
+      color: "black",
+    };
+
+    canvas.addEventListener("mousedown", (e) => {
+      draw = true;
+      context.beginPath();
+      memory.push({
+        pos: [],
+        config: {
+          color: colorInput.value,
+          lineSize: sizeInput.value,
+        },
+      });
+    });
+
+    canvas.addEventListener("mouseup", (e) => {
+      draw = false;
+    });
+
+    canvas.onmousemove = (e) => {
+      if (draw) {
+        let m = memory[memory.length - 1];
+        m.pos.push([e.clientX, e.clientY]);
+        drawLine(e.clientX, e.clientY, m.config);
+      }
+    };
+
+    function drawLine(x, y, cfg) {
+      context.lineWidth = cfg.lineSize;
+      context.strokeStyle = cfg.color;
+      context.lineTo(x, y);
+      context.stroke();
+    }
+
+    function clearCanvas() {
+      canvas.width = canvas.width;
+      canvas.height = canvas.height;
+    }
+
+    function redraw() {
+      memory.splice(memory.length - 1, 1);
+      for (m of memory) {
+        context.beginPath();
+        for (i of m.pos) {
+          drawLine(i[0], i[1], m.config);
+        }
+      }
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.code == "KeyC") {
+        clearCanvas();
+        memory = [];
+      } else if (e.code == "KeyZ") {
+        clearCanvas();
+        redraw();
+      }
+    });
+  </script>
+</html>

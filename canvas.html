@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+  </body>
+  <script>
+    let canvas = document.getElementById("canvas");
+    let context = canvas.getContext("2d");
+
+    canvas.width = 500;
+    canvas.height = 500;
+
+    context.beginPath();
+    context.fillStyle = "purple";
+    context.arc(150, 150, 80, 0, Math.PI, false);
+    context.fill();
+
+    /*
+    context.beginPath();
+    context.fillStyle = "purple";
+    context.rect(0, 0, 300, 200);
+    context.fill();
+    */
+
+    /*
+    context.beginPath();
+    context.moveTo(0, 0);
+    context.lineTo(0, 100);
+    context.lineTo(100, 100);
+    context.lineTo(100, 0);
+    context.lineTo(0, 0);
+    context.stroke();
+    */
+  </script>
+</html>
