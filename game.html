@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game</title>
+  </head>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      height: 100vh;
+      background-color: rgb(18, 18, 38);
+    }
+
+    canvas {
+      border: 3px solid rgb(191, 193, 247);
+      border-radius: 16px;
+    }
+  </style>
+
+  <body>
+    <canvas id="canvas"></canvas>
+    <script>
+      let canvas = document.getElementById("canvas");
+      let context = canvas.getContext("2d");
+
+      canvas.width = 400;
+      canvas.height = 400;
+
+      let grid = 16;
+      let count = 0;
+
+      let snake = {
+        speed: 10,
+        x: 0,
+        y: 0,
+        dx: grid,
+        dy: 0,
+        tails: [],
+        countTails: 3,
+      };
+
+      let eat = {
+        x: 0,
+        y: 0,
+      };
+
+      function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
+
+      function clear() {
+        canvas.width = canvas.width;
+        canvas.height = canvas.height;
+      }
+
+      function start() {
+        requestAnimationFrame(start);
+        if (count++ < snake.speed) return;
+        count = 0;
+        clear();
+        drawEat();
+        drawSnake();
+      }
+
+      function drawEat() {
+        context.fillStyle = "rgb(237, 92, 133)";
+        context.fillRect(eat.x, eat.y, grid - 1, grid - 1);
+        if (snake.x == eat.x && snake.y == eat.y) {
+          snake.countTails++;
+          let gridSize = canvas.width / grid;
+          eat.x = getRandomInt(0, gridSize) * grid;
+          eat.y = getRandomInt(0, gridSize) * grid;
+        }
+      }
+
+      function drawSnake() {
+        snake.x += snake.dx;
+        snake.y += snake.dy;
+
+        if (snake.x <= 0) {
+          snake.x = canvas.width - grid;
+        } else if (snake.x >= canvas.width) {
+          snake.x = 0;
+        }
+
+        if (snake.y <= 0) {
+          snake.y = canvas.height - grid;
+        } else if (snake.y >= canvas.height) {
+          snake.y = 0;
+        }
+
+        snake.tails.unshift({
+          x: snake.x,
+          y: snake.y,
+        });
+
+        if (snake.tails.length > snake.countTails) {
+          snake.tails.pop();
+        }
+
+        context.fillStyle = "rgb(92, 237, 220)";
+
+        for (const i of snake.tails)
+          context.fillRect(i.x, i.y, grid - 1, grid - 1);
+      }
+
+      requestAnimationFrame(start);
+    </script>
+  </body>
+</html>
