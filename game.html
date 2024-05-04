@@ -46,7 +46,7 @@
         dx: grid,
         dy: 0,
         tails: [],
-        countTails: 3,
+        countTails: 0,
       };
 
       let eat = {
@@ -70,6 +70,7 @@
         clear();
         drawEat();
         drawSnake();
+        finish();
       }
 
       function drawEat() {
@@ -87,13 +88,13 @@
         snake.x += snake.dx;
         snake.y += snake.dy;
 
-        if (snake.x <= 0) {
+        if (snake.x < 0) {
           snake.x = canvas.width - grid;
         } else if (snake.x >= canvas.width) {
           snake.x = 0;
         }
 
-        if (snake.y <= 0) {
+        if (snake.y < 0) {
           snake.y = canvas.height - grid;
         } else if (snake.y >= canvas.height) {
           snake.y = 0;
@@ -112,6 +113,43 @@
 
         for (const i of snake.tails)
           context.fillRect(i.x, i.y, grid - 1, grid - 1);
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (snake.dx == 0) {
+          if (e.code == "KeyA") {
+            snake.dx = -grid;
+            snake.dy = 0;
+          } else if (e.code == "KeyD") {
+            snake.dx = grid;
+            snake.dy = 0;
+          }
+        } else if (snake.dy == 0) {
+          if (e.code == "KeyW") {
+            snake.dx = 0;
+            snake.dy = -grid;
+          } else if (e.code == "KeyS") {
+            snake.dx = 0;
+            snake.dy = grid;
+          }
+        }
+      });
+
+      function finish() {
+        for (let i = 1; i < snake.tails.length; i++) {
+          let tail = snake.tails[i];
+          if (tail.x == snake.x && tail.y == snake.y) {
+            snake = {
+              speed: 10,
+              x: 0,
+              y: 0,
+              dx: grid,
+              dy: 0,
+              tails: [],
+              countTails: 0,
+            };
+          }
+        }
       }
 
       requestAnimationFrame(start);
